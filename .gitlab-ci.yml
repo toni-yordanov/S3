@@ -1,13 +1,18 @@
 build:
   stage: build
-  script: gradle build
+  script: 
+    - echo gradle build
+
   
 
 test:
   stage: test
-  script: gradle test
+  script: 
+    - echo gradle test
+
   
 quality:
   stage: test
-  script: gradle sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
+  script: 
+    - echo gradle sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
 
