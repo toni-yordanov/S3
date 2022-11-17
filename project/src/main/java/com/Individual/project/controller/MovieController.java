@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/movies")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class MovieController {
     private final GetMoviesUseCase getMoviesUseCase;
     private final DeleteMovieUseCase deleteMovieUseCase;
@@ -49,12 +49,9 @@ public class MovieController {
 
     @PutMapping("{id}")
     public ResponseEntity<Void> updateMovie(@PathVariable("id") long id,
-                                            @RequestBody @Valid UpdateMovieRequest request){
+                                             @RequestBody @Valid UpdateMovieRequest request){
         request.setId(id);
         updateMovieUseCase.updateMovie(request);
         return ResponseEntity.noContent().build();
     }
 }
-
-
-

@@ -13,7 +13,7 @@ public class DeleteTVShowUseCaseImpl implements DeleteTVShowUseCase {
 
 
     @Override
-    public void deleteTVShow(long id) {
-        this.tvShowRepository.deleteById(id);
+    public void deleteTVShow(long showId) {
+        this.tvShowRepository.deleteById(showId);
     }
 }

@@ -22,10 +22,4 @@ public class MovieEntity extends  MediaEntity{
         this.runtime = runtime;
     }
 
-    @Builder
-    public MovieEntity(String name, String description, int runtime){
-        super(name, description);
-        this.runtime = runtime;
-    }
-
 }

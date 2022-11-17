@@ -1,30 +1,26 @@
 package fontys.sem3.school.persistence.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Generated;
+import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
+@Entity
 public abstract class MediaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",
-            updatable = false,
-            insertable = false)
+    @Column(name = "id")
     private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
-
-    public MediaEntity(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 }

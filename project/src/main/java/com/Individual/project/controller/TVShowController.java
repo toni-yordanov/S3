@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/tvshows")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class TVShowController {
 
     private final GetTVShowsUseCase getTVShowsUseCase;
