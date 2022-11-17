@@ -6,6 +6,22 @@ class MovieService{
     getMovies(){
         return axios.get(MOVIE_URL);
     }
+    createMovie(movie){
+        return axios.post(MOVIE_URL, movie);
+    }
+
+    getMovieById(movieId){
+        return axios.get(MOVIE_URL + '/' + movieId);
+    }
+
+    updateMovie(movie, movieId){
+        return axios.put(MOVIE_URL + '/' + movieId, movie);
+    }
+
+    deleteMovie(movieId){
+        return axios.delete(MOVIE_URL + '/' + movieId);
+    }
+
 }
 
 export default new MovieService()

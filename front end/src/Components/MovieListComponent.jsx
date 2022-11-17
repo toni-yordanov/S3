@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
-import MovieService from '../services/MovieService';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import MovieService from '../services/MovieService'
 
-class ListMovieComponent extends Component {
-    constructor(props){
-        super(props)
+export const MovieListComponent = () => {
 
-        this.state = {
-            movies: []
-        }
-    }
+    const [movies, setMovies] = useState([])
 
-    componentDidMount(){
-        MovieService.getMovies().then((res) => {
-            this.setState({ movies: res.data.movies});
-        });
-    }
+    useEffect(() => {
+      
+        MovieService.getMovies().then((response) => {
+            setMovies(response.data.movies)
+        }).catch(error => {
+            console.log(error);
+        })
 
+    }, [])
     
+    const deleteMovie = (movieId) =>{
+        MovieService.deleteMovie(movieId).then((response) => {
 
-    render() 
-    {
-        return(
-            <div>
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+  return (
+    <div>
                 <h2 className="text-center">Movie list</h2>
+                <div className='row'>
+                    <Link to={"/add-movie"} className='btn btn-link'>Add Movie</Link>
+                </div>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
@@ -36,21 +43,23 @@ class ListMovieComponent extends Component {
                         <tbody>
                             {
                                 
-                                this.state.movies.map(
+                                movies.map(
                                     movie => 
                                     <tr key={movie.id}> 
                                         <td>{movie.name}</td>
                                         <td>{movie.description}</td>
                                         <td>{movie.runtime}</td>
+                                        <td>
+                                        <Link className="btn btn-info" to={`/update-movie/${movie.id}`} >Update</Link>
+                                        <button className='btn btn-danger' onClick={() => deleteMovie(movie.id)}>Delete</button>
+                                        </td>
                                     </tr>
                             )}
                         </tbody>
                     </table>
                 </div>
             </div>
-        )
-    }
+  )
 }
 
-
-export default ListMovieComponent;
+export default MovieListComponent
