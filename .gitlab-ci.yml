@@ -10,9 +10,6 @@ test:
   script: 
     - gradle test
 
-  
-quality:
-  stage: test
 
 sonarqube-check:
   image: gradle:jre11-slim
