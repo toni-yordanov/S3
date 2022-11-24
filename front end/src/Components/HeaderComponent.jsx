@@ -9,6 +9,7 @@ const HeaderComponent = () => {
                     <div><a href='/' className='navbar-brand'>Watch Tracker</a></div>
                     <div>
                     <Link className="btn btn-link" to={`/movies`} >Movies</Link>
+                    <Link className="btn btn-link" to={`/tvshows`} >Movies</Link>
                     </div>
                 </nav>
             </header>

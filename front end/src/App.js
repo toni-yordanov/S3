@@ -5,6 +5,9 @@ import FooterComponent from './Components/FooterComponent';
 import HeaderComponent from './Components/HeaderComponent';
 import ListMovieComponent from './Components/MovieListComponent';
 import CreateMovieComponent from './Components/CreateMovieComponent';
+import TvShowListComponent from './Components/TvShowListComponent';
+import CreateTvShowComponent from './Components/CreateTvShowComponent';
+
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
                     <Route path="/movies" element={< ListMovieComponent />} />
                     <Route path="/add-movie" element={< CreateMovieComponent />} />
                     <Route path="/update-movie/:id" element={< CreateMovieComponent />} />
+                    <Route path="/tvShows" element={< TvShowListComponent />} />
+                    <Route path="/add-tvshow" element={< CreateTvShowComponent />} />
+                    <Route path="/update-tvshow/:id" element={< CreateTvShowComponent />} />
                     
                 </Routes>
             </div>

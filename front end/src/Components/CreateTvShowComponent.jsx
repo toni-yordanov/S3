@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import {useNavigate, Link, useParams} from 'react-router-dom'
-import MovieService from '../services/MovieService'
+import TvShowService from '../services/TvShowService'
 
-export const CreateMovieComponent = () => {
+export const CreateTvShowComponent = () => {
 
     const [name ,setName ]= useState('')
-    const [runtime ,setRuntime ]= useState(0)
+    const [episodes ,setEpisodes ]= useState(0)
     const [description ,setDescription ]= useState('')
     const history = useNavigate();
     const {id} = useParams();
@@ -13,28 +13,28 @@ export const CreateMovieComponent = () => {
 
     console.log(id)
 
-    const saveOrUpdateMovie = (e) =>{
+    const saveOrUpdateTvShow = (e) =>{
         e.preventDefault();
 
-        const movie = {name, description, runtime}
+        const tvShow = {name, description, episodes}
 
         if(id){
-            MovieService.updateMovie(movie, id).then((response) =>{
+            TvShowService.updateTvShow(tvShow, id).then((response) =>{
 
                 console.log(response.data)
     
-                history('/movies')
+                history('/tvShows')
     
             }).catch(error =>{
                 console.log(error)
             })
 
         }else{
-            MovieService.createMovie(movie).then((response) =>{
+            TvShowService.createTvShow(tvShow).then((response) =>{
 
                 console.log(response.data)
     
-                history('/movies')
+                history('/tvShows')
     
             }).catch(error =>{
                 console.log(error)
@@ -45,10 +45,10 @@ export const CreateMovieComponent = () => {
 
     useState(() => {
         
-        MovieService.getMovieById(id).then((response) => {
+        TvShowService.getTvShowById(id).then((response) => {
             setName(response.data.name)
             setDescription(response.data.description)
-            setRuntime(response.data.runtime)
+            setEpisodes(response.data.episodes)
         }).catch(error => {
             console.log(error);
         })
@@ -57,10 +57,10 @@ export const CreateMovieComponent = () => {
 
     const title = () => {
         if(id){
-            return <h2 className='text-center'>Update Movie</h2>
+            return <h2 className='text-center'>Update Show</h2>
         }
         else{
-            return <h2 className='text-center'>Add Movie</h2>
+            return <h2 className='text-center'>Add Show</h2>
         }
     }
   return (
@@ -78,7 +78,7 @@ export const CreateMovieComponent = () => {
                                 <label className='form-lable'>Name:</label>
                                 <input
                                 type='text'
-                                placeholder='Enter movie name'
+                                placeholder='Enter Show name'
                                 name='name'
                                 className='form-controll'
                                 value={name}
@@ -89,7 +89,7 @@ export const CreateMovieComponent = () => {
                                 <label className='form-lable'>Description:</label>
                                 <input
                                 type='textarea'
-                                placeholder='Enter movie description'
+                                placeholder='Enter Show description'
                                 name='description'
                                 className='form-controll'
                                 value={description}
@@ -97,19 +97,19 @@ export const CreateMovieComponent = () => {
                                 ></input>
                             </div>
                             <div className='form-group mb-2'>
-                                <label className='form-lable'>Runtime:</label>
+                                <label className='form-lable'>episodes:</label>
                                 <input
                                 type='number'
                                 placeholder='0'
-                                name='runtime'
+                                name='episodes'
                                 className='form-controll'
-                                value={runtime}
-                                onChange = {(e) => setRuntime(e.target.value)}
+                                value={episodes}
+                                onChange = {(e) => setEpisodes(e.target.value)}
                                 ></input>
                             </div>
 
-                            <button className='btn btn-success' onClick={(e) => saveOrUpdateMovie(e)}>Submit</button>
-                            <Link to='/movies' className="btn btn-danger">Cancel</Link>
+                            <button className='btn btn-success' onClick={(e) => saveOrUpdateTvShow(e)}>Submit</button>
+                            <Link to='/TvShows' className="btn btn-danger">Cancel</Link>
                         </form>
                     </div>
                 </div>
@@ -119,4 +119,4 @@ export const CreateMovieComponent = () => {
   )
 }
 
-export default CreateMovieComponent
+export default CreateTvShowComponent
