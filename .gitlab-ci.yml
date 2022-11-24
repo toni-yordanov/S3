@@ -48,6 +48,3 @@ sonarqube-check:
   allow_failure: true
   only:
     - master # or the name of your main branch
-
-
-    
