@@ -4,7 +4,6 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 
-
 build:
   stage: build
   script: 
