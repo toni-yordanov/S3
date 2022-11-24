@@ -7,10 +7,10 @@ plugins {
 }
 
 sonarqube {
-  properties {
-    property "sonar.projectKey", "I451143_anton-advanced-practical_AYSHuMqfK8AvmexT-dWI"
-    property "sonar.qualitygate.wait", true 
-  }
+    properties {
+        property "sonar.projectKey", "I451143_anton-advanced-practical_AYSHuMqfK8AvmexT-dWI"
+        property "sonar.qualitygate.wait", true
+    }
 }
 
 group = 'fontys.sem3'
