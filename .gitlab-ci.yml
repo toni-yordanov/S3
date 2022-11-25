@@ -4,6 +4,11 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 
+stages:
+  - build
+  - test
+  - sonarqube-check
+
 build:
   stage: build
   script: 
@@ -19,7 +24,7 @@ test:
 
 
 sonarqube-check:
-  stage: test
+  stage: sonarqube-check
   image: gradle:jre11-slim
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
