@@ -9,8 +9,7 @@ plugins {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "s3-individual"
-        property "sonar.qualitygate.wait", true
+        property "sonar.projectKey", "S3-Individual"
     }
 }
 
