@@ -23,6 +23,7 @@ test:
     - .\gradlew test
 
 
+
 sonarqube-check:
   stage: sonarqube-check
   image: gradle:jre11-slim
