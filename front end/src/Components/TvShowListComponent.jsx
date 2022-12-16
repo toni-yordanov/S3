@@ -1,33 +1,38 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import TvShowService from '../services/TvShowService'
-import MovieService from '../services/TvShowService'
 
 export const TvShowListComponent = () => {
 
     const [tvShows, setTvShows] = useState([])
 
     useEffect(() => {
-      
+        getAllTvShows();
+        
+
+    }, [])
+
+    const getAllTvShows = () =>{
+        
         TvShowService.getTvShows().then((response) => {
             setTvShows(response.data.tvShows)
         }).catch(error => {
             console.log(error);
         })
-
-    }, [])
+    }
     
     const deleteTvShow = (showId) =>{
-        TvShowService.deleteMovie(showId).then((response) => {
-
+        TvShowService.deleteTvShow(showId).then((response) => {
+            getAllTvShows();
         }).catch(error => {
             console.log(error);
         })
+        
     }
 
   return (
     <div>
-                <h2 className="text-center">Movie list</h2>
+                <h2 className="text-center">Show list</h2>
                 <div className='row'>
                     <Link to={"/add-tvshow"} className='btn btn-link'>Add Show</Link>
                 </div>
@@ -51,8 +56,8 @@ export const TvShowListComponent = () => {
                                         <td>{tvShow.description}</td>
                                         <td>{tvShow.episodes}</td>
                                         <td>
-                                        <Link className="btn btn-info" to={`/update-tvshow/${movie.id}`} >Update</Link>
-                                        <button className='btn btn-danger' onClick={() => deleteTvShow(tvShow.id)}>Delete</button>
+                                        <Link className="btn btn-info" to={`/update-tvshow/${tvShow.id}`} >Update</Link>
+                                        <button className='btn btn-danger' onClick={() => deleteTvShow(tvShow.id)} style = {{marginLeft:"10px"}}>Delete</button>
                                         </td>
                                     </tr>
                             )}

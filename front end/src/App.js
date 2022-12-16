@@ -7,6 +7,7 @@ import ListMovieComponent from './Components/MovieListComponent';
 import CreateMovieComponent from './Components/CreateMovieComponent';
 import TvShowListComponent from './Components/TvShowListComponent';
 import CreateTvShowComponent from './Components/CreateTvShowComponent';
+import LoginComponent from './Components/LoginComponent';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/tvShows" element={< TvShowListComponent />} />
                     <Route path="/add-tvshow" element={< CreateTvShowComponent />} />
                     <Route path="/update-tvshow/:id" element={< CreateTvShowComponent />} />
+                    <Route path="/login" element={< LoginComponent />} />
                     
                 </Routes>
             </div>

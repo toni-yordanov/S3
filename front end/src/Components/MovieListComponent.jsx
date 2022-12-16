@@ -8,17 +8,20 @@ export const MovieListComponent = () => {
 
     useEffect(() => {
       
+        getAllMovies();
+
+    }, [])
+    
+    const getAllMovies = () => {
         MovieService.getMovies().then((response) => {
             setMovies(response.data.movies)
         }).catch(error => {
             console.log(error);
         })
-
-    }, [])
-    
+    } 
     const deleteMovie = (movieId) =>{
         MovieService.deleteMovie(movieId).then((response) => {
-
+            getAllMovies()
         }).catch(error => {
             console.log(error);
         })
@@ -51,7 +54,7 @@ export const MovieListComponent = () => {
                                         <td>{movie.runtime}</td>
                                         <td>
                                         <Link className="btn btn-info" to={`/update-movie/${movie.id}`} >Update</Link>
-                                        <button className='btn btn-danger' onClick={() => deleteMovie(movie.id)}>Delete</button>
+                                        <button className='btn btn-danger' onClick={() => deleteMovie(movie.id)} style = {{marginLeft:"10px"}}>Delete</button>
                                         </td>
                                     </tr>
                             )}
