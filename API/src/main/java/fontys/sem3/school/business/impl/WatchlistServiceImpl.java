@@ -33,7 +33,7 @@ public class WatchlistServiceImpl implements WatchlistService {
         ArrayList<WatchlistEntity> watchlistUser = new ArrayList<>();
         for (WatchlistEntity w:
              watchlistRepository.findAll()) {
-            if(w.getUserId() == userid){
+            if(w.getUserId().equals(userid)){
                 watchlistUser.add(w);
             }
         }
