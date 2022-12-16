@@ -21,24 +21,11 @@ import java.util.List;
 public class WatchlistServiceImpl implements WatchlistService {
     private final WatchlistRepository watchlistRepository;
 
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = null;//userRepo.findByEmail(username);
-        if(user == null){
-            log.error("User not found in database");
-            throw  new UsernameNotFoundException("User not found in database");
-        }
-        else {
-            log.info("User found in database: {}",username);
-        }
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        user.getRoles().forEach(roleEntity -> authorities.add(new SimpleGrantedAuthority(roleEntity.getName())));
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
-    }
-
 
     @Override
     public WatchlistEntity saveWatchlist(WatchlistEntity watchlist) {
-        return null;
+        watchlistRepository.save(watchlist);
+        return watchlist;
     }
 
     @Override
