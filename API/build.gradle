@@ -7,11 +7,13 @@ plugins {
 }
 
 
+
+
 sonarqube {
-    properties {
-        property "sonar.projectKey", "I451143_s3-individual_AYSpIdLbzijVLj3HIiFY"
-        property "sonar.qualitygate.wait", true
-    }
+  properties {
+    property "sonar.projectKey", "I451143_s3-individual_AYTC5g8NofGF949qf13w"
+    property "sonar.qualitygate.wait", true 
+  }
 }
 
 group = 'fontys.sem3'
