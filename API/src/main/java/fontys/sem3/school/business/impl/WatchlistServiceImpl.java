@@ -2,17 +2,13 @@ package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.WatchlistService;
 import fontys.sem3.school.persistence.WatchlistRepository;
-import fontys.sem3.school.persistence.entity.UserEntity;
 import fontys.sem3.school.persistence.entity.WatchlistEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -43,5 +39,26 @@ public class WatchlistServiceImpl implements WatchlistService {
     @Override
     public List<WatchlistEntity> getWatchlists() {
         return  watchlistRepository.findAll();
+    }
+
+    @Override
+    public WatchlistEntity updateWatchlist(Long watchlistId, WatchlistEntity watchlist) {
+        WatchlistEntity existingWatchlist = watchlistRepository.findById(watchlistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Watchlist not found with id " + watchlistId));
+
+        existingWatchlist.setType(watchlist.getType());
+        existingWatchlist.setMediaId(watchlist.getMediaId());
+        existingWatchlist.setCompletionDate(watchlist.getCompletionDate());
+        existingWatchlist.setStatus(watchlist.getStatus());
+
+        WatchlistEntity updatedWatchlist = watchlistRepository.save(existingWatchlist);
+        return updatedWatchlist;
+    }
+
+    @Override
+    public void deleteWatchlist(Long watchlistId) {
+        WatchlistEntity watchlist = watchlistRepository.findById(watchlistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Watchlist not found with id " + watchlistId));
+        watchlistRepository.delete(watchlist);
     }
 }
