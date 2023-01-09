@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/user/login");*/
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/login","/movies").permitAll();
+        http.authorizeRequests().antMatchers("/login","/movies","/tvshows").permitAll();
         http.authorizeRequests().antMatchers(GET, "/users/**").hasAnyAuthority("ROLE_USER");
         //http.authorizeRequests().anyRequest().permitAll();// Change this like the ones on top so that you can permit which pages can be viewed
 
