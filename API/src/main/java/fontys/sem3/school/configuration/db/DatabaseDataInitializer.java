@@ -1,3 +1,4 @@
+/*
 package fontys.sem3.school.configuration.db;
 
 import fontys.sem3.school.business.UserService;
@@ -22,7 +23,8 @@ public class DatabaseDataInitializer {
     private TVShowRepository tvShowRepository;
     private UserService userService;
 
-    @EventListener(ApplicationReadyEvent.class)
+    */
+/*@EventListener(ApplicationReadyEvent.class)
     public void populateMovieDatabaseInitialDummyData() {
         if (movieRepository.count() == 0) {
             movieRepository.save(MovieEntity.builder().name("Avengers").description("Superhero movie").runtime(190).build());
@@ -38,9 +40,11 @@ public class DatabaseDataInitializer {
             tvShowRepository.save(TVShowEntity.builder().name("X-man 97").description("Superhero tv show").episodes(52).build());
             tvShowRepository.save(TVShowEntity.builder().name("All inclusive").description("Comedy tv show").episodes(12).build());
         }
-    }
+    }*//*
 
-    @EventListener(ApplicationReadyEvent.class)
+
+    */
+/*@EventListener(ApplicationReadyEvent.class)
     public void populateUserDummyData() {
 
         userService.saveRole(new RoleEntity(null,"ROLL_USER"));
@@ -52,5 +56,7 @@ public class DatabaseDataInitializer {
         userService.addRoleToUser("anton@mail", "ROLL_ADMIN");
         userService.addRoleToUser("alex@mail", "ROLL_USER");
         }
-    }
+    }*//*
 
+
+*/

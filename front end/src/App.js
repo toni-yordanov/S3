@@ -8,6 +8,13 @@ import CreateMovieComponent from './Components/CreateMovieComponent';
 import TvShowListComponent from './Components/TvShowListComponent';
 import CreateTvShowComponent from './Components/CreateTvShowComponent';
 import LoginComponent from './Components/LoginComponent';
+import SignOutComponent from './Components/SignOutComponent';
+import CreateWatchlist from './Components/CreateWatchlistElementComponent';
+import UserPage from './Components/UserPageComponent';
+import ChatRoom from './Components/ChatRoom';
+import RegisterPage from './Components/RegisterComponent';
+import UpdateWatchlist from './Components/UpdateWatchlistComponent';
+import WatchlistComponent from './Components/WatchlistComponent';
 
 
 function App() {
@@ -29,7 +36,14 @@ function App() {
                     <Route path="/add-tvshow" element={< CreateTvShowComponent />} />
                     <Route path="/update-tvshow/:id" element={< CreateTvShowComponent />} />
                     <Route path="/login" element={< LoginComponent />} />
-                    
+                    <Route path="/sign-out" element={< SignOutComponent />} />
+                    <Route path="/index" element={this}/>
+                    <Route path="/watchlist-add/:showType/:showId" element={<CreateWatchlist/>}/>
+                    <Route path="/update-watchlist-item/:id" element={<UpdateWatchlist/>}/>
+                    <Route path="/my-profile" element={<UserPage/>}/>
+                    <Route path='/chat' element={<ChatRoom/>}/>
+                    <Route path="/register" element={<RegisterPage/>}/>
+                    <Route path="/watchlist" element={<WatchlistComponent/>}/>
                 </Routes>
             </div>
             <FooterComponent/>

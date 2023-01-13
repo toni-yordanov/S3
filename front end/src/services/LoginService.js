@@ -18,23 +18,28 @@ class LoginService {
     }
 
 logout() {
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
 }
 
-register(email,firstName,lastName,dateOfBirth,gender,phoneNumber,password){
-    return axios.post(API_URL + "register", {
-        email,
-        firstName,
-        lastName,
-        dateOfBirth,
-        gender,
-        phoneNumber,
-        password
-    });
+register(name,email,password){
+    const User = {
+        name: name,
+        email: email,
+        password: password,
+      }
+    return axios.post(API_URL + "users/register", User);
+}
+
+addRole(email){
+    return axios.post(API_URL + "users/role/addtouser", email);
 }
 
 getUser() {
-    return JSON.parse(localStorage.getItem('user'));;
+    return JSON.parse(sessionStorage.getItem('user'));;
+}
+
+getUserInfo(){
+    return axios.get(API_URL + 'users/user' ,{headers : authHeader()})
 }
 
 checkToken(){

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import LoginService from '../services/LoginService';
-import { useNavigate } from "react-router";
 
 export const LoginComponent = () => {
   const [msg, setMsg] = React.useState(null);
-  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
@@ -13,8 +11,8 @@ export const LoginComponent = () => {
     LoginService.login(username, password)
         .then((response) => response.json())
         .then((responseData) => {
-            localStorage.setItem("user", JSON.stringify(responseData));
-            navigate("/index");
+            sessionStorage.setItem("user", JSON.stringify(responseData));
+            window.location.href = '/';
         })
         .catch(err=>{setMsg("Detail mismatch");})
 }

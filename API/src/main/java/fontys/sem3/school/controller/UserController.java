@@ -8,11 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fontys.sem3.school.business.UserService;
 import fontys.sem3.school.persistence.entity.RoleEntity;
 import fontys.sem3.school.persistence.entity.UserEntity;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +37,21 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 public class UserController {
     private final UserService userService;
 
+
+    @GetMapping("/user")
+    public ResponseEntity<UserEntity> getUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return ResponseEntity.ok().body(userService.getUser(currentPrincipalName));
+    }
     @GetMapping()
     public ResponseEntity<List<UserEntity>>getUsers(){
         return  ResponseEntity.ok().body(userService.getUsers());
     }
-    @PostMapping("/user/save")
+
+    @PostMapping("/register")
     public ResponseEntity<UserEntity>saveUsers(@RequestBody UserEntity user){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/user/save").toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/register").toUriString());
         return  ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 
@@ -54,8 +62,8 @@ public class UserController {
     }
 
     @PostMapping("/role/addtouser")
-    public ResponseEntity<?>saveUsers(@RequestBody RoleToUserForm form){
-        userService.addRoleToUser(form.getEmail(), form.getRoleName());
+    public ResponseEntity<?>saveUsers(@RequestBody String email){
+        userService.addRoleToUser(email, "ROLL_USER");
         return  ResponseEntity.ok().build();
     }
 
@@ -96,8 +104,4 @@ public class UserController {
 
 
 }
-@Data
-class RoleToUserForm{
-    private String email;
-    private String roleName;
-}
+

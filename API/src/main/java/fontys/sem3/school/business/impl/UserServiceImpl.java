@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         UserEntity user = userRepo.findByEmail(email);
         RoleEntity role = roleRepo.findByName(roleName);
         user.getRoles().add(role);
+        userRepo.save(user);
     }
 
     @Override
